@@ -41,12 +41,13 @@ body {
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, transform 0.2s ease;
 }
 
 .login-container input[type="text"]:focus,
 .login-container input[type="password"]:focus {
     border-color: #ff6b81;
+    transform: scale(1.03);
 }
 
 .login-container input[type="submit"] {
@@ -58,11 +59,12 @@ body {
     font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s ease;
 }
 
 .login-container input[type="submit"]:hover {
     background-color: #ff4757;
+    transform: translateY(-3px);
 }
 
 .signup-link {
@@ -77,5 +79,6 @@ body {
 }
 
 .signup-link a:hover {
+    color: #ff4757;
     text-decoration: underline;
 }
