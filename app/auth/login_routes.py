@@ -7,6 +7,10 @@ login_bp = Blueprint('login', __name__)
 def index_login():
     return render_template('login.html')
 
+@login_bp.route('/forgot-password')
+def forgot_password():
+    return render_template('forgot_password.html')
+
 @login_bp.route('/login', methods=['POST'])
 def auth():
     username = request.form['username']

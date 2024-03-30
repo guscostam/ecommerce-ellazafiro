@@ -16,7 +16,7 @@
             <input type="password" id="password" name="password">
             <input type="submit" value="Entrar">
         </form>
-        <div class="signup-link">Ainda não tem uma conta? <a href="{{ url_for('signup.sign_up') }}">Cadastre-se aqui</a></div>
+        <div class="signup-link">Ainda não tem uma conta? <a href="{{ url_for('signup.sign_up') }}">Cadastre-se aqui</a> <a href="{{ url_for('login.forgot_password') }}"> | Esqueci minha senha</a></div>
     </div>
 </body>
 </html>
