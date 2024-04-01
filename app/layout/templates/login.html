@@ -3,20 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Loja de Roupas Femininas</title>
+    <title>Ella Zaffiro</title>
     <link rel="stylesheet" href="../static/css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="login-container">
-        <h2>Bem-vinda!</h2>
-        <form action="/login" method="post">
-            <label for="username">Usuário:</label>
-            <input type="text" id="username" name="username">
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password">
-            <input type="submit" value="Entrar">
+    <div class="background-image"></div>
+    <div class="container">
+        <form class="login-form" action="/login" method="post">
+            <h1>Ella Zaffiro</h1>
+            <h2>Sistema de loja de roupas</h2>
+            <div class="input-group">
+                <input type="email" id="username" name="username" placeholder="E-mail" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="Senha" required>
+            </div>
+            <button type="submit">Entrar</button>
+            <p class="forgot-password">Esqueceu sua senha? <a href="{{ url_for('login.forgot_password') }}">Esqueci minha senha</a></p>
+            <p class="signup-link">Ainda não tem uma conta? <a href="{{ url_for('signup.sign_up') }}">Cadastre-se</a></p>
         </form>
-        <div class="signup-link">Ainda não tem uma conta? <a href="{{ url_for('signup.sign_up') }}">Cadastre-se aqui</a> <a href="{{ url_for('login.forgot_password') }}"> | Esqueci minha senha</a></div>
     </div>
+    <script>
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+    </script>
 </body>
 </html>

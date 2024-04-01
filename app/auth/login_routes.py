@@ -25,7 +25,7 @@ def auth():
 @login_bp.route('/dashboard')
 def dashboard():
     if 'username' in session:
-        return f'Bem-vindo, {session["username"]}! Você está logado.'
+        return render_template('system_index.html')
     else:
         return redirect(url_for('login.index_login'))
 
