@@ -1,3 +1,4 @@
+from re import match
 import sqlite3
 
 def check_login(email, password):
@@ -7,3 +8,6 @@ def check_login(email, password):
     user = cursor.fetchone()
     conn.close()
     return user
+
+def validate_email(email):
+    return match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email) is not None
