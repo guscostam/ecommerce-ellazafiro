@@ -36,7 +36,7 @@ def logout():
     return redirect(url_for('login.index_login'))
 
 @login_bp.route('/sign-up', methods=['POST'])
-def client_signup ():
+def client_signup():
     name = request.form['sign-up name']
     lastname = request.form['sign-up lastname']
     email = request.form['sign-up email']
