@@ -19,10 +19,10 @@
                 <input type="text" id="sign-up lastname" name="sign-up lastname" placeholder="Sobrenome" required>
             </div>
             <div class="input-group">
-                <input type="email" id="sign-up email" name="sign-up email" placeholder="E-mail" required>
+                <input type="email" id="sign-up email" name="sign-up email" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Por favor, insira um e-mail válido." required>
             </div>
             <div class="input-group">
-                <input type="password" id="sign-up password" name="sign-up password" placeholder="Senha" required>
+                <input type="password" id="sign-up password" name="sign-up password" placeholder="Senha" pattern="(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}" title="A senha deve ter no mínimo 6 caracteres, pelo menos uma letra maiúscula e um caractere especial" required>
             </div>
             <div class="input-group">
                 <input type="password" id="sign-up confirm-password" name="sign-up confirm-password" placeholder="Confirmar Senha" required>

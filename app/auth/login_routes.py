@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from app.auth.check_login import check_login, validate_email
+from app.auth.check_login import check_login
 import sqlite3
 
 login_bp = Blueprint('login', __name__)
@@ -12,6 +12,10 @@ def index_login():
 def forgot_password():
     return render_template('forgot_password.html')
 
+@login_bp.route('/sign-up')
+def sign_up():
+    return render_template('sign-up.html')
+
 @login_bp.route('/login', methods=['POST'])
 def auth():
     username = request.form['username']
@@ -21,7 +25,7 @@ def auth():
         session['username'] = username
         return redirect(url_for('login.dashboard'))
     else:
-        return 'Credenciais inválidas. Tente novamente.'
+        return f'<script>alert("Credenciais inválidas. Tente novamente."); window.location.href = "/";</script>', 400
    
 @login_bp.route('/dashboard')
 def dashboard():
@@ -37,22 +41,27 @@ def logout():
 
 @login_bp.route('/sign-up', methods=['POST'])
 def client_signup():
-    name = request.form['sign-up name']
-    lastname = request.form['sign-up lastname']
-    email = request.form['sign-up email']
+    name = request.form['sign-up name'].capitalize()
+    lastname = request.form['sign-up lastname'].capitalize()
+    email = request.form['sign-up email'].lower()
     password = request.form['sign-up password']
     confirm_password = request.form['sign-up confirm-password']
 
     if password != confirm_password:
         return f'<script>alert("As senhas não coincidem. Tente novamente."); window.location.href = "/sign-up";</script>', 400
-    if not validate_email(email):
-        return f'<script>alert("Por favor, insira um e-mail válido."); window.location.href = "/sign-up";</script>', 400
+    
     try:
         conn = sqlite3.connect('data/clients.db')
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO clients (name, lastname, email, password) VALUES (?, ?, ?, ?)", (name, lastname, email, password))
+        cursor.execute("SELECT * FROM clients WHERE email=?", (email,))
+        existing_user = cursor.fetchone()
+
+        if existing_user:
+            return f'<script>alert("O email já está cadastrado. Por favor, use outro email."); window.location.href = "/sign-up";</script>', 400
+        
+        cursor.execute("INSERT INTO clients (name, lastname, email, password, confirmpassword) VALUES (?, ?, ?, ?, ?)", (name, lastname, email, password, confirm_password))
         conn.commit()
-        return "Cliente cadastrado com sucesso!"
+        return f'<script>alert("Cadastrado feito com sucesso!"); window.location.href = "/";</script>'
     except Exception as e:
         return f"Ocorreu um erro ao cadastrar o cliente: {e}", 400
     finally:
