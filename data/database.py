@@ -9,15 +9,14 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS clients (
                     name TEXT,
                     lastname TEXT,
                     email TEXT,
-                    password TEXT,
-                    confirmpassword TEXT
+                    password TEXT
                 )''')
 
 clients = [
-    ('Gustavo', 'Margotti', 'guscostam@gmail.com', '12345', '12345')
+    ('Gustavo', 'Margotti', 'guscostam@gmail.com', '12345')
 ]
 
-cursor.executemany("INSERT INTO clients (name, lastname, email, password, confirmpassword) VALUES (?, ?, ?, ?, ?)", clients)
+cursor.executemany("INSERT INTO clients (name, lastname, email, password) VALUES (?, ?, ?, ?)", clients)
 
 conn.commit()
 conn.close()
