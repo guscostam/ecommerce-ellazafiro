@@ -19,6 +19,7 @@
                     <li><a href="#">Produtos</a></li>
                     <li><a href="#">Clientes</a></li>
                     <li><a href="#">Relatórios</a></li>
+                    <li><a href="{{ url_for('login.logout') }}">Sair</a></li>
                 </ul>
             </nav>
         </div>
@@ -26,7 +27,7 @@
 
     <section class="hero">
         <div class="container">
-            <h2>Seja Bem-Vinda à Nossa Loja</h2>
+            <h2>Seja Bem-Vindo(a), {{ name }}</h2>
             <p>Descubra as últimas tendências em moda feminina.</p>
             <a href="https://www.instagram.com/ellazaffiro/" class="btn" target="_blank">Explore Agora</a>
         </div>
