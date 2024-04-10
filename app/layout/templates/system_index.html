@@ -15,9 +15,9 @@
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="#">Início</a></li>
+                    <li><a href="{{ url_for('login.dashboard') }}">Início</a></li>
                     <li><a href="#">Produtos</a></li>
-                    <li><a href="{{ url_for('system_index.signup_clients') }}">Clientes</a></li>
+                    <li><a href="{{ url_for('system_index.clients') }}">Clientes</a></li>
                     <li><a href="#">Relatórios</a></li>
                     <li><a href="{{ url_for('login.logout') }}">Sair</a></li>
                 </ul>
