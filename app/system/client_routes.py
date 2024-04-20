@@ -24,6 +24,17 @@ def phone_exist(phone):
     existing_phone = cursor.fetchone()
     return existing_phone
 
+def get_clients_from_database():
+    conn = sqlite3.connect('data/clients.db')
+    cursor = conn.cursor()
+    cursor.execute("PRAGMA table_info(ecommerce_clients)")
+    columns = cursor.fetchall()
+    column_names = [col[1] for col in columns]
+    cursor.execute("SELECT * FROM ecommerce_clients")
+    clients = cursor.fetchall()
+    conn.close()
+    return clients, column_names
+
 @client_bp.route('/signup-clients', methods=['GET', 'POST'])
 def signup_clients():
     if 'username' in session:
@@ -43,5 +54,17 @@ def signup_clients():
             signup_clients_db(name, last_name, email, phone, address)
 
         return render_template('signup_clients.html')
+    else:
+        return redirect(url_for('login.index_login'))
+
+@client_bp.route('/client-list')
+def client_list():
+    if 'username' in session:
+        clients, column_names = get_clients_from_database()
+        if not clients:
+            message = "No clients registred."
+        else:
+            message = None
+        return render_template('clients_list.html', clients=clients, column_names=column_names, message=message)
     else:
         return redirect(url_for('login.index_login'))
