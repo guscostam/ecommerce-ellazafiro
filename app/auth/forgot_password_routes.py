@@ -20,6 +20,7 @@ def db_connection(email):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM clients WHERE email=?", (email,))
     existing_user = cursor.fetchone()
+    conn.close()    
     return existing_user
 
 def update_password(email, new_password):

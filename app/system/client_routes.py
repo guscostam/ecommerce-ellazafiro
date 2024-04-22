@@ -4,36 +4,46 @@ import sqlite3
 client_bp = Blueprint('client', __name__)
 
 def signup_clients_db(name, last_name, email, phone, address):
-    conn = sqlite3.connect('data/clients.db')
-    cursor = conn.cursor()
-    cursor.execute('INSERT INTO ecommerce_clients (name, lastname, email, phone, address) VALUES (?, ?, ?, ?, ?)', (name, last_name, email, phone, address))
-    conn.commit()
-    conn.close()
+    if 'username' in session:
+        username = session['username']
+        conn = sqlite3.connect(f'data/user_{username}.db')
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO clients (name, last_name, email, phone, address) VALUES (?, ?, ?, ?, ?)', (name, last_name, email, phone, address))
+        conn.commit()
+        conn.close()
 
 def email_exist(email):
-    conn = sqlite3.connect('data/clients.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM ecommerce_clients WHERE email=?', (email,))  
-    existing_email = cursor.fetchone()
-    return existing_email
+    if 'username' in session:
+        username = session['username']
+        conn = sqlite3.connect(f'data/user_{username}.db')
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM clients WHERE email=?', (email,))  
+        existing_email = cursor.fetchone()
+        conn.close()
+        return existing_email
 
 def phone_exist(phone):
-    conn = sqlite3.connect('data/clients.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM ecommerce_clients WHERE phone=?', (phone,))
-    existing_phone = cursor.fetchone()
-    return existing_phone
+    if 'username' in session:
+        username = session['username']
+        conn = sqlite3.connect(f'data/user_{username}.db')
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM clients WHERE phone=?', (phone,))
+        existing_phone = cursor.fetchone()
+        conn.close()
+        return existing_phone
 
 def get_clients_from_database():
-    conn = sqlite3.connect('data/clients.db')
-    cursor = conn.cursor()
-    cursor.execute("PRAGMA table_info(ecommerce_clients)")
-    columns = cursor.fetchall()
-    column_names = [col[1] for col in columns]
-    cursor.execute("SELECT * FROM ecommerce_clients")
-    clients = cursor.fetchall()
-    conn.close()
-    return clients, column_names
+    if 'username' in session:
+        username = session['username']
+        conn = sqlite3.connect(f'data/user_{username}.db')
+        cursor = conn.cursor()
+        cursor.execute("PRAGMA table_info(clients)")
+        columns = cursor.fetchall()
+        column_names = [col[1] for col in columns]
+        cursor.execute("SELECT * FROM clients")
+        clients = cursor.fetchall()
+        conn.close()
+        return clients, column_names
 
 @client_bp.route('/signup-clients', methods=['GET', 'POST'])
 def signup_clients():
@@ -53,6 +63,8 @@ def signup_clients():
 
             signup_clients_db(name, last_name, email, phone, address)
 
+            return f'<script>alert("Cliente cadastrado com sucesso!"); window.location.href = "/signup-clients";</script>'
+
         return render_template('signup_clients.html')
     else:
         return redirect(url_for('login.index_login'))
@@ -62,7 +74,7 @@ def client_list():
     if 'username' in session:
         clients, column_names = get_clients_from_database()
         if not clients:
-            message = "No clients registred."
+            message = "Não há clientes cadastrados."
         else:
             message = None
         return render_template('clients_list.html', clients=clients, column_names=column_names, message=message)
