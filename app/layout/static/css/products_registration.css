@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Lobster', cursive;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    animation: fadeIn 1s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background-color: #fab9c563;
+    color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 24px;
+    margin-right: 50px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ff4d6d;
+}
+
+.hero {
+    text-align: center;
+    display: flex;
+    padding: 80px 0;
+    height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.hero h2 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    color: #333;
+}
+
+.btn {
+    border: #ccc;
+    display: inline-block;
+    font-family: 'Lobster', cursive;
+    background-color: #ff4d6d;
+    color: #fff;
+    font-size: 20px;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ff3552;
+}
+
+.product-form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: vertical;
+}
