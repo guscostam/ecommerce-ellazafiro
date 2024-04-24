@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Clientes</title>
-    <link rel="stylesheet" href="../static/css/client_list.css">
+    <title>Lista de Produtos</title>
+    <link rel="stylesheet" href="../static/css/products_list.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
@@ -27,7 +27,7 @@
 
     <section class="content">
         <div class="container">
-            <h2>Lista de Clientes</h2>
+            <h2>Lista de Produtos</h2>
             {% if message %}
             <p>{{ message }}</p>
             {% else %}
@@ -40,9 +40,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for client in clients %}
+                    {% for product in products %}
                     <tr>
-                        {% for data in client %}
+                        {% for data in product %}
                         <td>{{ data }}</td>
                         {% endfor %}
                     </tr>

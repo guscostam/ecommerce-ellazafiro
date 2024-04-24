@@ -16,7 +16,7 @@
             <nav>
                 <ul>
                     <li><a href="{{ url_for('login.dashboard') }}">Início</a></li>
-                    <li><a href="#">Produtos</a></li>
+                    <li><a href="{{ url_for('system_index.products') }}">Produtos</a></li>
                     <li><a href="{{ url_for('system_index.clients') }}">Clientes</a></li>
                     <li><a href="#">Relatórios</a></li>
                     <li><a href="{{ url_for('login.logout') }}">Sair</a></li>
@@ -28,15 +28,12 @@
     <section class="hero">
         <div class="container">
             <h2>Cadastro de Produtos</h2>
-            <form action="#" method="POST" class="product-form">
+            <form action="/products-registration" method="POST" class="product-form">
                 <div class="form-group">
                     <input type="text" id="product_name" name="product_name" placeholder="Nome do Produto" required>
                 </div>
                 <div class="form-group">
-                    <textarea id="product_description" name="product_description" placeholder="Descrição do Produto"></textarea>
-                </div>
-                <div class="form-group">
-                    <input type="number" id="product_price" name="product_price" step="0.01" placeholder="Preço do Produto" required>
+                    <input type="text" id="product_price" name="product_price" placeholder="Preço do Produto" required oninput="formatCurrency(this)">
                 </div>
                 <div class="form-group">
                     <input type="text" id="product_size" name="product_size" placeholder="Tamanho" required>
@@ -49,5 +46,15 @@
         </div>
     </section>
 </body>
+
+<script>
+    function formatCurrency(input) {
+        var value = input.value.replace(/\D/g, '');
+
+        value = (value / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+        input.value = value;
+    }
+</script>
 
 </html>

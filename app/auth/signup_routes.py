@@ -16,6 +16,15 @@ def create_client_db(username):
                         phone TEXT,
                         address TEXT
                         )''')
+    
+    cursor.execute('''CREATE TABLE IF NOT EXISTS products (
+                    id INTEGER PRIMARY KEY,
+                    product_name TEXT,
+                    product_price REAL,
+                    product_size TEXT,
+                    product_color TEXT
+                    )''')
+
     conn.commit()
     conn.close()
 
