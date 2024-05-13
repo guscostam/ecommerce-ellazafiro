@@ -15,3 +15,24 @@ def products():
         return render_template('products_homepage.html')
     else:
         return redirect(url_for('login.index_login'))
+    
+@system_index_bp.route('/reports')
+def reports():
+    if 'username' in session:
+        return render_template('reports_homepage.html')
+    else:
+        return redirect(url_for('login.index_login'))
+
+@system_index_bp.route('/product-reports')
+def product_reports():
+    if 'username' in session:
+        return render_template('product_reports.html')
+    else:
+        return redirect(url_for('login.index_login'))
+
+@system_index_bp.route('/client-reports')
+def client_reports():
+    if 'username' in session:
+        return render_template('client_reports.html')
+    else:
+        return redirect(url_for('login.index_login'))

@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Clientes</title>
-    <link rel="stylesheet" href="../static/css/client_list.css">
+    <title>Menu Relatórios</title>
+    <link rel="stylesheet" href="../static/css/reports_homepage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
@@ -25,31 +25,11 @@
         </div>
     </header>
 
-    <section class="content">
+    <section class="hero">
         <div class="container">
-            <h2>Lista de Clientes</h2>
-            {% if message %}
-            <p>{{ message }}</p>
-            {% else %}
-            <table>
-                <thead>
-                    <tr>
-                        {% for column_name in column_names %}
-                        <th>{{ column_name }}</th>
-                        {% endfor %}
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for client in clients %}
-                    <tr>
-                        {% for data in client %}
-                        <td>{{ data }}</td>
-                        {% endfor %}
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            {% endif %}
+            <h2>Menu Relatórios</h2>
+            <a href="{{ url_for('system_index.client_reports') }}" class="btn">Relatório Clientes</a>
+            <a href="{{ url_for('system_index.product_reports') }}" class="btn">Relatório Produtos</a>
         </div>
     </section>
 </body>
